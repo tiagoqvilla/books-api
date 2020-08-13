@@ -12,6 +12,8 @@ app.get("/", (req, res) => res.json({ msg: "Welcome to the Books API!" }));
 
 // Definição das Rotas
 const booksRoutes = require("./routes/books");
+const userRoutes = require("./routes/users");
+app.use("/user", userRoutes);
 app.use("/books", booksRoutes);
 
 //Conectar ao DB
