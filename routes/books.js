@@ -1,9 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const Book = require("../models/Book");
+const verify = require("../middleware/verifyToken");
 
-// Retorna todos os posts
-router.get("/", async (req, res) => {
+// @route     GET /books
+// @desc      Retorna todos os livros
+// @access     Private
+router.get("/", verify, async (req, res) => {
   try {
     const books = await Book.find();
     res.status(200).json(books);
@@ -12,8 +15,10 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Retorna um livro específico
-router.get("/:id", async (req, res) => {
+// @route     GET /books/:id
+// @desc      Retorna um livro específico
+// @access     Private
+router.get("/:id", verify, async (req, res) => {
   try {
     const book = await Book.findById(req.params.id);
     res.status(200).json(book);
@@ -22,8 +27,10 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// Cadastra um novo livro
-router.post("/", async (req, res) => {
+// @route     POST /books
+// @desc      Cadastra um novo livro
+// @access     Private
+router.post("/", verify, async (req, res) => {
   const { title, author, isbn, genre, date_published, date_posted } = req.body;
 
   const book = new Book({
@@ -43,8 +50,10 @@ router.post("/", async (req, res) => {
   }
 });
 
-// Atualiza um livro
-router.put("/:id", async (req, res) => {
+// @route     PUT /books/:id
+// @desc      Atualiza um livro
+// @access     Private
+router.put("/:id", verify, async (req, res) => {
   try {
     const bookUpdate = await Book.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -57,8 +66,10 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-// Delete um livro
-router.delete("/:id", async (req, res) => {
+// @route     DELETE /books/:id
+// @desc      Remove um livro
+// @access     Private
+router.delete("/:id", verify, async (req, res) => {
   try {
     const bookDelete = await Book.findByIdAndRemove(req.params.id);
     res

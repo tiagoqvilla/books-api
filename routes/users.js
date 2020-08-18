@@ -6,7 +6,9 @@ const express = require("express");
 const router = express();
 require("dotenv").config();
 
-// Registra um usuário
+// @route     POST /user/register
+// @desc      Registra um novo usuário
+// @access     Public
 router.post("/register", (req, res) => {
   const { email, password } = req.body;
 
@@ -30,7 +32,9 @@ router.post("/register", (req, res) => {
   });
 });
 
-// Autenticar usuário
+// @route     POST /user/auth
+// @desc      Autentica o usuário
+// @access     Public
 router.post("/auth", async (req, res) => {
   const { email, password } = req.body;
 
@@ -45,7 +49,7 @@ router.post("/auth", async (req, res) => {
     const { iat, exp } = jwt.decode(token);
 
     //Resposta do token
-    res.send({ iat, exp, token });
+    res.header("auth-token", token).send({ iat, exp, token });
   } catch (error) {
     res.status(400).json({ msg: error });
   }

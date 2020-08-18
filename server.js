@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 require("dotenv").config();
 const PORT = process.env.PORT;
 const DB_CONNECTION = process.env.DB_CONNECTION;
@@ -7,6 +8,7 @@ const DB_CONNECTION = process.env.DB_CONNECTION;
 const app = express();
 
 // Middleware
+app.use(cors);
 app.use(express.json({ extended: false }));
 app.use(express.urlencoded({ extended: true }));
 

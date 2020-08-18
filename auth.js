@@ -1,5 +1,5 @@
 const bcrypt = require("bcryptjs");
-const monngoose = require("mongoose");
+const mongoose = require("mongoose");
 const User = require("./models/User");
 
 exports.authenticate = (email, password) => {
