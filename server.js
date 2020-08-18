@@ -1,6 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const config = require("./config");
+require("dotenv").config();
+const PORT = process.env.PORT;
+const DB_CONNECTION = process.env.DB_CONNECTION;
 
 const app = express();
 
@@ -18,9 +20,9 @@ app.use("/books", booksRoutes);
 
 //Conectar ao DB
 mongoose.connect(
-  config.DB_CONNECTION,
+  DB_CONNECTION,
   { useNewUrlParser: true, useUnifiedTopology: true },
   () => console.log("Conectado ao DB")
 );
 
-app.listen(config.PORT);
+app.listen(PORT);
