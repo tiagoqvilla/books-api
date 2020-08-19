@@ -6,7 +6,7 @@ const verify = require("../middleware/verifyToken");
 // @route     GET /books
 // @desc      Retorna todos os livros
 // @access     Private
-router.get("/", verify, async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const books = await Book.find();
     res.status(200).json(books);
@@ -18,7 +18,7 @@ router.get("/", verify, async (req, res) => {
 // @route     GET /books/:id
 // @desc      Retorna um livro específico
 // @access     Private
-router.get("/:id", verify, async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     const book = await Book.findById(req.params.id);
     res.status(200).json(book);
