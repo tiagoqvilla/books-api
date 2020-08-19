@@ -1,6 +1,8 @@
 # books-api
 Uma API REST para cadastro de livros, criada com NodeJs, Express, Mongoose e autenticação via JWT
 
+## Uso
+Adicionar um arquivo '.env' contendo as variáveis de ambiente PORT, DB_CONNECTION  e JWT_SECRET
 
 ## Inicialização
 Instalar dependências
