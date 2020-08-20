@@ -76,7 +76,7 @@ router.delete("/:id", verify, async (req, res) => {
       .status(200)
       .json({ msg: `Post de id ${req.params.id} removido com sucesso!` });
   } catch (error) {
-    res.status;
+    res.status(400).json({ msg: error });
   }
 });
 
